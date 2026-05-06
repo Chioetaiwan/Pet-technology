@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compassion Bridge</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bark: '#2D2016',
+            warmcream: '#FDF6EC',
+            terracotta: '#C75B39',
+            sage: '#6B8F71',
+            sand: '#E8D5B7'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'DM Sans', sans-serif; }
+    .tab-active { border-bottom: 3px solid #C75B39; color: #C75B39; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .fade-in { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .stat-counter { animation: countUp 1s ease-out; }
+    @keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .quiz-option:hover { background: #C75B39; color: white; }
+    .quiz-option.selected { background: #C75B39; color: white; }
+    .heart-btn.active svg { fill: #C75B39; stroke: #C75B39; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-warmcream text-bark overflow-auto flex flex-col min-h-screen">
+  <div id="app" class="w-full min-h-full flex flex-col"><!-- Header -->
+   <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-sand/50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-2">
+      <svg width="36" height="36" viewbox="0 0 36 36">
+       <circle cx="18" cy="18" r="16" fill="#C75B39" opacity="0.15" /><path d="M18 8c-2 0-4 1-5 3s-1 4 0 6c1.5 3 5 7 5 7s3.5-4 5-7c1-2 1-4 0-6s-3-3-5-3z" fill="#C75B39" /><path d="M12 20c-1.5 0-3 .5-3 2s1 3 3 3 3-1 3-2-.5-3-3-3zM24 20c1.5 0 3 .5 3 2s-1 3-3 3-3-1-3-2 .5-3 3-3z" fill="#C75B39" opacity="0.6" />
+      </svg><span id="site-title" class="font-display font-bold text-xl text-bark">Compassion Bridge</span>
+     </div>
+     <nav class="hidden md:flex gap-1"><button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 text-sm font-medium tab-active transition-all">Home</button> <button onclick="switchTab('browse')" id="tab-browse" class="px-4 py-2 text-sm font-medium transition-all">Browse</button> <button onclick="switchTab('match')" id="tab-match" class="px-4 py-2 text-sm font-medium transition-all">Match</button> <button onclick="switchTab('about')" id="tab-about" class="px-4 py-2 text-sm font-medium transition-all">About Us</button>
+     </nav><button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden p-2"><i data-lucide="menu" class="w-5 h-5"></i></button>
+    </div>
+    <div id="mobile-nav" class="hidden md:hidden border-t border-sand/30 bg-white">
+     <div class="flex flex-col p-2"><button onclick="switchTab('home');document.getElementById('mobile-nav').classList.add('hidden')" class="px-4 py-3 text-left text-sm font-medium">Home</button> <button onclick="switchTab('browse');document.getElementById('mobile-nav').classList.add('hidden')" class="px-4 py-3 text-left text-sm font-medium">Browse</button> <button onclick="switchTab('match');document.getElementById('mobile-nav').classList.add('hidden')" class="px-4 py-3 text-left text-sm font-medium">Match</button> <button onclick="switchTab('about');document.getElementById('mobile-nav').classList.add('hidden')" class="px-4 py-3 text-left text-sm font-medium">About Us</button>
+     </div>
+    </div>
+   </header><!-- HOME -->
+   <section id="page-home" class="flex-1 fade-in"><!-- Hero -->
+    <div class="relative bg-gradient-to-br from-bark via-bark/95 to-bark/80 text-white overflow-hidden">
+     <div class="absolute inset-0 opacity-10">
+      <svg width="100%" height="100%">
+       <defs>
+        <pattern id="paws" x="0" y="0" width="60" height="60" patternunits="userSpaceOnUse">
+         <circle cx="15" cy="20" r="4" fill="white" />
+         <circle cx="25" cy="12" r="3" fill="white" />
+         <circle cx="35" cy="20" r="3" fill="white" />
+         <ellipse cx="25" cy="30" rx="8" ry="10" fill="white" />
+        </pattern>
+       </defs><rect width="100%" height="100%" fill="url(#paws)" />
+      </svg>
+     </div>
+     <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 relative z-10 text-center">
+      <h1 id="hero-heading" class="font-display text-4xl md:text-6xl font-bold mb-4">Every Life Deserves Love</h1>
+      <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">A platform connecting rescue dogs and cats with loving families</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center"><button onclick="switchTab('match')" class="bg-terracotta hover:bg-terracotta/90 text-white px-8 py-3 rounded-full font-semibold transition-all shadow-lg shadow-terracotta/30"> <span class="flex items-center justify-center gap-2"><i data-lucide="heart" class="w-5 h-5"></i>Continue Matching</span> </button> <button onclick="switchTab('browse')" class="border-2 border-white/40 hover:bg-white/10 text-white px-8 py-3 rounded-full font-semibold transition-all"> Find Pet </button>
+      </div>
+     </div>
+    </div><!-- Stats -->
+    <div class="max-w-5xl mx-auto px-4 -mt-10 relative z-20">
+     <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="stat-counter">
+       <p class="text-3xl md:text-4xl font-bold text-terracotta">1,247</p>
+       <p class="text-sm text-bark/60 mt-1">Rescue Dogs</p>
+      </div>
+      <div class="stat-counter">
+       <p class="text-3xl md:text-4xl font-bold text-terracotta">893</p>
+       <p class="text-sm text-bark/60 mt-1">Rescue Cats</p>
+      </div>
+      <div class="stat-counter">
+       <p class="text-3xl md:text-4xl font-bold text-sage">1,856</p>
+       <p class="text-sm text-bark/60 mt-1">Adapted</p>
+      </div>
+      <div class="stat-counter">
+       <p class="text-3xl md:text-4xl font-bold text-sage">98%</p>
+       <p class="text-sm text-bark/60 mt-1">Satisfaction</p>
+      </div>
+     </div>
+    </div><!-- Newly Arrived -->
+    <div class="max-w-6xl mx-auto px-4 py-16">
+     <div class="flex items-center justify-between mb-8">
+      <h2 class="font-display text-2xl md:text-3xl font-bold">Newly Arrived</h2><button onclick="switchTab('browse')" class="text-terracotta font-medium text-sm flex items-center gap-1 hover:underline">View All<i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+     </div>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="newly-arrived"></div>
+    </div><!-- App Download -->
+    <div class="bg-bark/5 py-16">
+     <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1">
+       <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Download App</h2>
+       <p class="text-bark/70 mb-6">Check information about rescue pets anytime, anywhere. You can also receive matching notifications.</p>
+       <div class="flex gap-3"><button class="bg-bark text-white px-5 py-3 rounded-xl flex items-center gap-2 hover:bg-bark/90 transition-all">
+         <svg width="20" height="20" viewbox="0 0 24 24" fill="white">
+          <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+         </svg> App Store </button> <button class="bg-bark text-white px-5 py-3 rounded-xl flex items-center gap-2 hover:bg-bark/90 transition-all">
+         <svg width="20" height="20" viewbox="0 0 24 24" fill="white">
+          <path d="M3.61 1.81L13.42 12 3.61 22.19c-.36-.21-.61-.6-.61-1.05V2.86c0-.45.25-.84.61-1.05zM15.1 13.68l-1.68-1.68 1.68-1.68 3.23 1.87c.5.29.5.75 0 1.04l-3.23 1.87v-.42zM4.56.75L14.73 12 4.56 23.25 14.73 12 4.56.75zM5.22.19l9.58 5.53-2.38 2.38L5.22.19z" />
+         </svg> Google Play </button>
+       </div>
+      </div>
+      <div class="w-48 h-80 bg-gradient-to-b from-terracotta/20 to-sage/20 rounded-3xl flex items-center justify-center shadow-xl border-4 border-white">
+       <div class="text-center p-4">
+        <svg width="48" height="48" viewbox="0 0 36 36" class="mx-auto mb-3">
+         <circle cx="18" cy="18" r="16" fill="#C75B39" opacity="0.3" /><path d="M18 8c-2 0-4 1-5 3s-1 4 0 6c1.5 3 5 7 5 7s3.5-4 5-7c1-2 1-4 0-6s-3-3-5-3z" fill="#C75B39" />
+        </svg>
+        <p class="text-xs font-medium text-bark/60">Compassion Bridge</p>
+        <p class="text-xs text-bark/40 mt-1">Mobile App</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- BROWSE -->
+   <section id="page-browse" class="flex-1 fade-in hidden">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+     <h1 class="font-display text-3xl font-bold mb-6">Find Pets</h1><!-- Filters -->
+     <div class="bg-white rounded-xl p-4 mb-8 shadow-sm border border-sand/30 flex flex-wrap gap-3">
+      <select id="filter-age" onchange="applyFilters()" class="border border-sand rounded-lg px-3 py-2 text-sm bg-white"> <option value="">Age</option><option value="puppy">Puppy（〜1Year）</option><option value="young">Young（1〜3Years）</option><option value="adult">Adult（3〜7Years）</option><option value="senior">Senior（7Years〜）</option> </select>
+       <select id="filter-sex" onchange="applyFilters()" class="border border-sand rounded-lg px-3 py-2 text-sm bg-white"> <option value="">Gender</option><option value="male">Boy</option><option value="female">Girl</option> </select> 
+       <select id="filter-size" onchange="applyFilters()" class="border border-sand rounded-lg px-3 py-2 text-sm bg-white"> <option value="">Size</option><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option> </select>
+       <select id="filter-personality" onchange="applyFilters()" class="border border-sand rounded-lg px-3 py-2 text-sm bg-white"> <option value="">Character</option><option value="active">Active</option><option value="calm">Calm</option><option value="friendly">Friendly</option><option value="shy">Shy</option> </select> 
+       <select id="filter-fav" onchange="applyFilters()" class="border border-sand rounded-lg px-3 py-2 text-sm bg-white"><option value="">All</option><option value="fav">Favorites only</option></select>
+       <button onclick="resetFilters()" class="ml-auto text-sm text-terracotta hover:underline">Reset</button>
+      </div>
+    </div>
+    <div id="browse-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-w-6xl mx-auto px-4 flex justify-between"></div>
+   </section><!-- MATCH -->
+   <section id="page-match" class="flex-1 fade-in hidden">
+    <div class="max-w-2xl mx-auto px-4 py-10">
+     <div class="text-center mb-10">
+      <h1 class="font-display text-3xl font-bold mb-3">Matching Quiz</h1>
+      <p class="text-bark/60">Let's Find Your Best Match</p>
+     </div>
+     <div id="quiz-container" class="bg-white rounded-2xl shadow-lg p-6 md:p-10">
+      <div id="quiz-progress" class="mb-6">
+       <div class="h-2 bg-sand/50 rounded-full overflow-hidden">
+        <div id="quiz-bar" class="h-full bg-terracotta rounded-full transition-all" style="width:20%"></div>
+       </div>
+       <p class="text-xs text-bark/50 mt-2">Questions<span id="quiz-num">1</span> / 5</p>
+      </div>
+      <div id="quiz-question"></div>
+      <div id="quiz-options" class="space-y-3 mt-6"></div>
+      <div class="flex justify-between mt-8"><button id="quiz-prev" onclick="prevQuestion()" class="px-5 py-2 rounded-lg border border-sand text-sm font-medium disabled:opacity-30" disabled>Back</button> <button id="quiz-next" onclick="nextQuestion()" class="px-5 py-2 rounded-lg bg-terracotta text-white text-sm font-medium disabled:opacity-30" disabled>Next</button>
+      </div>
+     </div>
+     <div id="quiz-result" class="hidden bg-white rounded-2xl shadow-lg p-6 md:p-10 text-center">
+      <div class="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
+       <i data-lucide="heart" class="w-8 h-8 text-sage"></i>
+      </div>
+      <h2 class="font-display text-2xl font-bold mb-3">Recommend For You</h2>
+      <div id="match-results" class="mt-6 space-y-4"></div><button onclick="resetQuiz()" class="mt-8 px-6 py-2 border border-terracotta text-terracotta rounded-full text-sm font-medium hover:bg-terracotta/5">Again</button>
+     </div>
+    </div>
+   </section>
+  <main class="flex-1"><!-- ABOUT -->
+   <section id="page-about" class="flex-1 fade-in hidden">
+    <div class="max-w-5xl mx-auto px-4 py-10">
+     <div class="mb-10 w-full">
+       <h1 class="font-display text-3xl md:text-4xl font-bold mb-4">About Compassion Bridge</h1>
+       <p id="about-desc" class="text-bark/70 leading-relaxed mb-4">We are a platform established in 2026 that connects rescue animals with adoptive families. Our mission is to find loving homes for every animal, and we work in partnership with local shelters and volunteers.</p>
+       <p class="text-bark/70 leading-relaxed">Using our proprietary matching algorithm, we scientifically analyze the compatibility between pets and owners. This significantly reduces the return rate and helps ensure a happy life for your pet.</p>
+      </div>
+      <div class="w-full bg-gradient-to-br from-sage/20 to-terracotta/10 rounded-2xl overflow-hidden">
+        <img src="https://vokatsu.jp/wp-content/uploads/2025/03/17110554/%E3%82%B7%E3%82%A7%E3%83%AB%E3%82%BF%E3%83%BC%E2%91%A0_AdobeStock_993332557.jpeg" alt="rescue" class="w-full h-auto object-cover">
+      </div>
+     </div><!-- Team -->
+    <div class="max-w-4xl mx-auto px-4">
+  <h2 class="font-display text-2xl font-bold mb-6 text-center">Our Team</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+      <div class="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-terracotta/20">
+        <img src="https://i.pinimg.com/originals/95/7c/72/957c72fcb4dd7c6ae6a5267a5c036b41.png"
+             class="w-full h-full object-cover">
+      </div>
+      <h3 class="font-semibold">Kurumi</h3>
+      <p class="text-sm text-bark/50">Representative</p>
+    </div>
+    <!-- Card 2 -->
+    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+      <div class="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-terracotta/20">
+        <img src="https://i.pinimg.com/originals/75/3e/a3/753ea3875dd8d58ddb8904c2c5932a3d.png"
+             class="w-full h-full object-cover">
+      </div>
+      <h3 class="font-semibold">Yuki</h3>
+      <p class="text-sm text-bark/50">Matching Coordinator</p>
+    </div>
+    <!-- Card 3 -->
+    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+      <div class="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-terracotta/20">
+        <img src="https://blog.asianwiki.com/wp-content/uploads/2022/09/Is-It-a-Coincidence-tp1.jpeg"
+             class="w-full h-full object-cover">
+      </div>
+      <h3 class="font-semibold">Ai</h3>
+      <p class="text-sm text-bark/50">Volunteer Coordinator</p>
+    </div>
+  </div>
+  <!-- Mission -->
+  <div class="bg-bark text-white rounded-2xl p-8 md:p-12 text-center mb-16">
+    <h2 class="font-display text-2xl font-bold mb-4">Our Mission</h2>
+    <p class="text-white/80 max-w-2xl mx-auto">“A forever home for every animal in need.” We are committed to improving animal welfare and creating a society where people and animals can live happily together.</p>
+  </div>
+</div>
+   </section>
+   </main><!-- Footer -->
+   <footer class="bg-bark text-white/60 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+     <p>© 2026 Compassion Bridge. All rights reserved.</p>
+    </div>
+   </footer>
+   </div>
+  </body>
+  <script>
+    // Pet Data
+    const pets = [
+      { id:1, name:'Koro', type:'dog', age:'2Years', ageCategory:'young', sex:'male', size:'medium', personality:'active', personalityLabel:'active', description:'He’s full of energy and loves going for walks. He’s friendly and gets along well with children.', color:'#D4956A', imageUrl:'https://image.pet-home.jp/user_file/2024/01/13/1500825.jpg'},
+      { id:2, name:'Mimi', type:'cat', age:'3Years', ageCategory:'adult', sex:'female', size:'small', personality:'calm', personalityLabel:'calm', description:'He has a quiet and calm personality. He loves to relax on my lap.', color:'#A8C4A0', imageUrl:'https://tse1.mm.bing.net/th/id/OIP.PnNALP2BfyFvcfVhMOwhuQHaHa?w=942&h=942&rs=1&pid=ImgDetMain&o=7&rm=3'},
+      { id:3, name:'Taro', type:'dog', age:'5Years', ageCategory:'adult', sex:'male', size:'large', personality:'friendly', personalityLabel:'friendly', description:'A large dog that’s friendly to everyone. He’s well-trained and very well-behaved.', imageUrl:'https://th.bing.com/th/id/OIP.svSinQ5IK_ARH-2vf0zgaAHaHa?w=202&h=202&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3', color: '#C4A882' },
+      { id:4, name:'Sakura', type:'cat', age:'1Years', ageCategory:'young', sex:'female', size:'small', personality:'active', personalityLabel:'active', description:'A curious kitten. He loves playing with toys.', imageUrl:'https://as-dream.com/wp-content/uploads/2024/09/IMG_8803.jpg', color:'#E8B4B8' },
+      { id:5, name:'Reo', type:'dog', age:'8Years', ageCategory:'senior', sex:'male', size:'medium', personality:'calm', personalityLabel:'calm', description:'A gentle senior dog. He enjoys spending time in a quiet environment.', imageUrl:'https://i.kobe-np.co.jp/rentoku/omoshiro/202402/img/a_17426097.jpg', color:'#B8A090' },
+      { id:6, name:'Hana', type:'dog', age:'0.5Years', ageCategory:'puppy', sex:'female', size:'small', personality:'active', personalityLabel:'active', description:'A lively puppy. He’s still in training, but he picks things up quickly.', imageUrl: 'https://image.pet-home.jp/user_file/2023/05/26/1288899.jpg', color:'#F0C8A0' },
+      { id:7, name:'Sora', type:'cat', age:'4Years', ageCategory:'adult', sex:'male', size:'medium', personality:'shy', personalityLabel:'shy', description:'He’s shy around strangers at first, but once he gets used to you, he’s a total sweetheart.', imageUrl:'https://tse2.mm.bing.net/th/id/OIP.U8bSLM6ZGtZGV28oYGsmtAHaF_?rs=1&pid=ImgDetMain&o=7&rm=3', color:'#90A8C8' },
+      { id:8, name:'Momo', type:'dog', age:'2Years', ageCategory:'young', sex:'female', size:'medium', personality:'friendly', personalityLabel:'friendly', description:'A sociable dog who gets along well with other dogs. Loves the dog park.', imageUrl:'https://tse4.mm.bing.net/th/id/OIP.kcJKHfkTww07Uw50kG8PRgHaHS?rs=1&pid=ImgDetMain&o=7&rm=3', color:'#D8A0C0' },
+      { id:9, name:'Kuro', type:'cat', age:'6Years', ageCategory:'adult', sex:'male', size:'medium', personality:'calm', personalityLabel:'calm', description:'A calm black cat who goes at his own pace. Basking in the sun by the window is his daily routine.', imageUrl:'https://as-dream.com/wp-content/uploads/2024/02/IMG_5475-scaled-e1706842339582-1024x661.jpg', color:'#606060' },
+    ];
+
+    let favorites = new Set();
+    let currentTab = 'home';
+
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-' + tab).classList.remove('hidden');
+      document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.remove('tab-active'));
+      document.getElementById('tab-' + tab).classList.add('tab-active');
+      currentTab = tab;
+      if (tab === 'browse') renderBrowse();
+    }
+
+    // Pet card SVG
+    function petSVG(pet, size = 200) {
+      if (pet.type === 'dog') {
+        return `<svg width="${size}" height="${size}" viewBox="0 0 200 200"><rect width="200" height="200" fill="${pet.color}" rx="0"/><ellipse cx="100" cy="130" rx="40" ry="45" fill="white" opacity="0.3"/><circle cx="100" cy="90" r="30" fill="white" opacity="0.9"/><circle cx="88" cy="85" r="4" fill="#2D2016"/><circle cx="112" cy="85" r="4" fill="#2D2016"/><ellipse cx="100" cy="96" rx="6" ry="4" fill="#2D2016"/><path d="M94 102 q6 4 12 0" stroke="#2D2016" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M75 70 q-5-15 5-20 q8 5 5 18" fill="white" opacity="0.8"/><path d="M125 70 q5-15-5-20 q-8 5-5 18" fill="white" opacity="0.8"/><path d="M100 140 q-3 20-15 30" stroke="white" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/></svg>`;
+      }
+      return `<svg width="${size}" height="${size}" viewBox="0 0 200 200"><rect width="200" height="200" fill="${pet.color}" rx="0"/><circle cx="100" cy="100" r="30" fill="white" opacity="0.9"/><circle cx="90" cy="95" r="3.5" fill="#2D2016"/><circle cx="110" cy="95" r="3.5" fill="#2D2016"/><ellipse cx="100" cy="104" rx="4" ry="3" fill="#FFB6C1"/><path d="M96 108 q4 3 8 0" stroke="#2D2016" stroke-width="1" fill="none"/><polygon points="78,72 72,50 90,65" fill="white" opacity="0.85"/><polygon points="122,72 128,50 110,65" fill="white" opacity="0.85"/><path d="M70 104 q-20 0-25 5 q5 3 25 0" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/><path d="M130 104 q20 0 25 5 q-5 3-25 0" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/></svg>`;
+    }
+
+    // Render pet card
+    function renderCard(pet) {
+      const isFav = favorites.has(pet.id);
+      return `<div class="bg-white rounded-xl overflow-hidden shadow-sm border border-sand/20 card-hover transition-all duration-300">
+        <div class="relative h-64 bg-sand/20 overflow-hidden">
+  <img src="${pet.imageUrl}" alt="${pet.name}" 
+       class="w-full h-full object-cover" 
+       loading="lazy"
+       onerror="console.error('Image failed:', this.src); this.style.background='#E8D5B7'; this.alt='error image';">
+          <button onclick="toggleFav(${pet.id})" class="heart-btn ${isFav ? 'active' : ''} absolute top-3 right-3 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+            <svg width="18" height="18" viewBox="0 0 24 24" stroke="${isFav ? '#C75B39' : '#999'}" fill="${isFav ? '#C75B39' : 'none'}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-semibold text-lg">${pet.name}</h3>
+            <span class="text-xs bg-sand/50 px-2 py-1 rounded-full">${pet.age}</span>
+          </div>
+          <div class="flex gap-2 mb-3 flex-wrap">
+            <span class="text-xs px-2 py-0.5 bg-sage/10 text-sage rounded-full">${pet.sex === 'male' ? '♂ Boy' : '♀ Girl'}</span>
+            <span class="text-xs px-2 py-0.5 bg-terracotta/10 text-terracotta rounded-full">${pet.personalityLabel}</span>
+            <span class="text-xs px-2 py-0.5 bg-bark/5 text-bark/60 rounded-full">${pet.size === 'small' ? 'Small' : pet.size === 'medium' ? 'Medium' : 'Large'}</span>
+          </div>
+          <p class="text-sm text-bark/60 leading-relaxed">${pet.description}</p>
+        </div>
+      </div>`;
+    }
+
+    function toggleFav(id) {
+      if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
+      if (currentTab === 'browse') renderBrowse();
+      renderNewlyArrived();
+    }
+
+    // Browse
+    function applyFilters() { renderBrowse(); }
+    function resetFilters() {
+      document.getElementById('filter-age').value = '';
+      document.getElementById('filter-sex').value = '';
+      document.getElementById('filter-size').value = '';
+      document.getElementById('filter-personality').value = '';
+      document.getElementById('filter-fav').value = '';
+      renderBrowse();//
+    }
+
+    function renderBrowse() {
+      let filtered = [...pets];
+      const age = document.getElementById('filter-age').value;
+      const sex = document.getElementById('filter-sex').value;
+      const size = document.getElementById('filter-size').value;
+      const pers = document.getElementById('filter-personality').value;
+      const fav = document.getElementById('filter-fav')?.value;
+      if (age) filtered = filtered.filter(p => p.ageCategory === age);
+      if (sex) filtered = filtered.filter(p => p.sex === sex);
+      if (size) filtered = filtered.filter(p => p.size === size);
+      if (pers) filtered = filtered.filter(p => p.personality === pers);
+      if (fav === 'fav') filtered = filtered.filter(p => favorites.has(p.id));
+      //
+      document.getElementById('browse-list').innerHTML =
+    filtered.map(renderCard).join('');
+    }  
+
+    // Newly arrived (first 3)
+    function renderNewlyArrived() {
+      document.getElementById('newly-arrived').innerHTML = pets.slice(0, 3).map(renderCard).join('');
+    }
+
+    // Quiz
+    const quizQuestions = [
+  { q:'What type of home do you have?', opts:[{t:'Apartment',v:'apartment'},{t:'House with yard',v:'house'},{t:'House without yard',v:'house_no'}] },
+  { q:'How much time are you home during the day?', opts:[{t:'Almost always',v:'home'},{t:'Half the day',v:'half'},{t:'Mostly away',v:'away'}] },
+  { q:'How much daily exercise can you provide?', opts:[{t:'1+ hour walks daily',v:'long'},{t:'30 min daily',v:'medium'},{t:'Very little',v:'short'}] },
+  { q:'What\'s your pet experience level?', opts:[{t:'First time pet owner',v:'first'},{t:'Some experience',v:'some'},{t:'Very experienced',v:'experienced'}] },
+  { q:'What type of relationship do you want?', opts:[{t:'Active & playful companion',v:'active'},{t:'Calm & comforting friend',v:'calm'},{t:'Independent partner',v:'partner'}] },
+];
+    let quizStep = 0, quizAnswers = [];
+
+    function renderQuiz() {
+      const q = quizQuestions[quizStep];
+      document.getElementById('quiz-num').textContent = quizStep + 1;
+      document.getElementById('quiz-bar').style.width = ((quizStep + 1) / 5 * 100) + '%';
+      document.getElementById('quiz-question').innerHTML = `<h3 class="font-display text-xl font-semibold">${q.q}</h3>`;
+      document.getElementById('quiz-options').innerHTML = q.opts.map((o, i) =>
+        `<button onclick="selectQuizOption(${i})" class="quiz-option ${quizAnswers[quizStep] === o.v ? 'selected' : ''} w-full text-left px-5 py-4 border border-sand/50 rounded-xl text-sm font-medium transition-all hover:border-terracotta">${o.t}</button>`
+      ).join('');
+      document.getElementById('quiz-prev').disabled = quizStep === 0;
+      document.getElementById('quiz-next').disabled = !quizAnswers[quizStep];
+      document.getElementById('quiz-next').textContent = quizStep === 4 ? 'See Result' : 'Next';
+    }
+
+    function selectQuizOption(i) {
+      quizAnswers[quizStep] = quizQuestions[quizStep].opts[i].v;
+      renderQuiz();
+    }
+
+    function nextQuestion() {
+      if (quizStep < 4) { quizStep++; renderQuiz(); }
+      else showResults();
+    }
+    function prevQuestion() { if (quizStep > 0) { quizStep--; renderQuiz(); } }
+
+    function showResults() {
+      document.getElementById('quiz-container').classList.add('hidden');
+      document.getElementById('quiz-result').classList.remove('hidden');
+      // Simple matching logic
+      let scores = pets.map(p => {
+        let score = 0;
+        if (quizAnswers[4] === 'active' && p.personality === 'active') score += 3;
+        if (quizAnswers[4] === 'calm' && p.personality === 'calm') score += 3;
+        if (quizAnswers[4] === 'partner' && p.personality === 'shy') score += 2;
+        if (quizAnswers[2] === 'long' && p.size === 'large') score += 2;
+        if (quizAnswers[2] === 'short' && p.type === 'cat') score += 2;
+        if (quizAnswers[1] === 'away' && p.type === 'cat') score += 2;
+        if (quizAnswers[1] === 'home' && p.personality === 'shy') score += 1;
+        if (quizAnswers[0] === 'apartment' && p.size === 'small') score += 2;
+        if (quizAnswers[3] === 'first' && p.personality === 'calm') score += 2;
+        if (quizAnswers[3] === 'experienced' && p.personality === 'active') score += 1;
+        return { pet: p, score };
+      });
+      scores.sort((a, b) => b.score - a.score);
+      const top3 = scores.slice(0, 3);
+      document.getElementById('match-results').innerHTML = top3.map((s, i) =>
+        `<div class="flex items-center gap-4 bg-warmcream rounded-xl p-4 text-left">
+          <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">${petSVG(s.pet, 64)}</div>
+          <div class="flex-1"><h4 class="font-semibold">${i === 0 ? '🥇 ' : i === 1 ? '🥈 ' : '🥉 '}${s.pet.name}</h4><p class="text-xs text-bark/50">${s.pet.age} · ${s.pet.personalityLabel} · ${s.pet.type === 'dog' ? 'dog' :'cat'}</p></div>
+          <span class="text-sm font-bold text-terracotta">${Math.min(98, 70 + s.score * 5)}%</span>
+        </div>`
+      ).join('');
+    }
+
+    function resetQuiz() {
+      quizStep = 0; quizAnswers = [];
+      document.getElementById('quiz-container').classList.remove('hidden');
+      document.getElementById('quiz-result').classList.add('hidden');
+      renderQuiz();
+    }
+
+    // Init
+    renderNewlyArrived();
+    renderQuiz();
+    lucide.createIcons();
+
+    // Element SDK
+    const defaultConfig = {
+      site_title: 'Compassion Bridge',
+      hero_heading: 'Every Life Deserves Love',
+      about_description: 'We are a platform established in 2026 that connects rescue animals with adoptive families. Our mission is to find loving homes for every animal, and we work in partnership with local shelters and volunteers.',
+      background_color: '#FDF6EC',
+      surface_color: '#FFFFFF',
+      text_color: '#2D2016',
+      primary_action_color: '#C75B39',
+      secondary_action_color: '#6B8F71',
+      font_family: 'DM Sans',
+      font_size: 16
+    };
+
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => {
+        const c = { ...defaultConfig, ...config };
+        document.getElementById('site-title').textContent = c.site_title;
+        document.getElementById('hero-heading').textContent = c.hero_heading;
+        document.getElementById('about-desc').textContent = c.about_description;
+        document.body.style.backgroundColor = c.background_color;
+        document.body.style.color = c.text_color;
+        document.body.style.fontFamily = `${c.font_family}, 'DM Sans', sans-serif`;
+        document.body.style.fontSize = c.font_size + 'px';
+        document.querySelectorAll('.bg-white').forEach(el => el.style.backgroundColor = c.surface_color);
+        document.querySelectorAll('.bg-terracotta, .text-terracotta').forEach(el => {
+          if (el.classList.contains('bg-terracotta')) el.style.backgroundColor = c.primary_action_color;
+          if (el.classList.contains('text-terracotta')) el.style.color = c.primary_action_color;
+        });
+      },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ['site_title', config.site_title || defaultConfig.site_title],
+        ['hero_heading', config.hero_heading || defaultConfig.hero_heading],
+        ['about_description', config.about_description || defaultConfig.about_description],
+      ])
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f65648bc15bf209',t:'MTc3Nzg3NTU1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
